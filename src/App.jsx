@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter> 
       <Routes>
         {/* <Route exact path="/" element={<Login />} /> */}
-        <Route exact path="/register" element={<Register />} />
+        {/* <Route exact path="/register" element={<Register />} /> */}
         <Route path="/Portfolio/:userId" element={<Portfolio />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/Create" element = {<Customize />} />
@@ -16,6 +16,12 @@ const App = () => {
         <Route path="/" element = {
           <div>
             <Login />
+            <StarsCanvas />
+          </div>
+            } />
+        <Route path="/register" element = {
+          <div>
+            <Register />
             <StarsCanvas />
           </div>
             } />

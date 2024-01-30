@@ -24,7 +24,7 @@ function Register() {
   }, [user, loading]);
 
   return (
-    <div className="register">
+    <div className="login">
       <div className="register__container">
         <input
           type="text"
