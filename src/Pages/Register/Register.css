@@ -8,7 +8,7 @@
   .register__container {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */
     background-color:#ffffff17;
     padding: 30px;
   }

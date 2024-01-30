@@ -73,7 +73,7 @@ function Login() {
         {/* <button className="login__btn login__google font-medium mb-4 py-2 rounded-md" onClick={signInWithGoogle}>
           Login with Google
         </button> */}
-        <div class="max-w-xs">
+        <div class="">
           <button type="button" class="py-2.5 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
             <svg class="flex-shrink-0 w-4 h-4" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_4132_5805adfqfqdq121)">

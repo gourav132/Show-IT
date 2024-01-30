@@ -23,14 +23,12 @@
     /* border: #090e27; */
   }
   .login__btn {
-    /* padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
-    border: none; */
     color: white;
-    /* background-color: rgb(145, 94, 255); */
     background-color: rgb(145 94 255 / 44%);
-    /* border-radius: 8px; */
+    transition: all 0.2s;
+  }
+  .login__btn:hover {
+    background-color: rgb(145 94 255 / 84%);;
   }
   .login__google {
     background-color: #4285f4;
