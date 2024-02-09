@@ -8,6 +8,32 @@ import {
   import { getFirestore, collection, doc, getDocs } from "firebase/firestore"; // Import Firestore functions
   import { useAuthState } from 'react-firebase-hooks/auth';
   import {auth, db} from '../firebase/config';
+  import {
+    // mobile,
+    // backend,
+    // creator,
+    // web,
+    javascript,
+    typescript,
+    html,
+    css,
+    reactjs,
+    redux,
+    tailwind,
+    nodejs,
+    mongodb,
+    git,
+    figma,
+    docker,
+    meta,
+    starbucks,
+    tesla,
+    shopify,
+    carrent,
+    jobit,
+    tripguide,
+    threejs,
+  } from "../assets";
 
 
 export const  PreviewContext = createContext();
@@ -18,7 +44,8 @@ export const PreviewProvider = ( props ) =>  {
         displayName: "",
         tagline: "",
         overview: "",
-        services: [ ]
+        services: [ ],
+        experiences: [ ]
     });
 
     async function handleUserData() {

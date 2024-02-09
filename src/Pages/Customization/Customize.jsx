@@ -73,10 +73,10 @@ export default function Customize() {
     const input = (label, Name, HelperText="") => {
         return (
             <div className="mb-4">
-                <label htmlFor="name" className="text-sm font-medium text-gray-200">{label}</label>
+                <label htmlFor={Name} className="text-sm font-medium text-gray-200">{label}</label>
                 <input
                     type="text" 
-                    id="name" 
+                    id={Name} 
                     name={Name}
                     className="mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
                     onChange = {handleChange}
@@ -174,7 +174,7 @@ export default function Customize() {
 
                 {input("Display Name", "displayName", "Enter the name you want to display")}
                 {input("Tag Line", "tagline", "Enter a catchy tag line")}
-
+                
                 <h3 className='text-xl font-semibold mt-6 mb-4'>Overview Section</h3>
 
                 <div>
@@ -205,21 +205,21 @@ export default function Customize() {
                 <p className='mt-1 text-xs text-gray-400'>you can select maximum four of your forte</p>
 
 
-                {/* <Experience input={input} setDetails={setDetails} details={details}/> */}
+                <Experience input={input} />
 
                 
 
             <div className='mt-4'>
+                <hr />
                 <button 
-                    // onClick={() => navigate("/Preview")}
                     onClick={handlePreview}
-                    className='px-4 py-2 mr-4'  
+                    className='mt-6 px-4 py-2 mr-4'  
                     style={{ backgroundColor: "#915eff", borderRadius: "6px"}}
                 >
                     preview
                 </button>
                 <button onClick={handleSubmitButton} className='hover:bg-slate-800 px-4 py-2 rounded-md'>Submit</button>
-                <button onClick={logout} className='hover:bg-slate-800 px-4 py-2 rounded-md'>Logout</button>
+                <button onClick={logout} className='ml-4 py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>Logout</button>
             </div>
 
             </div>

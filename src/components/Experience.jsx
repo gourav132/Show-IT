@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 
@@ -9,7 +9,10 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
+import { PreviewContext } from "../context/PreviewContext";
+
 const ExperienceCard = ({ experience }) => {
+
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -54,6 +57,8 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Experience = () => {
+  const [previewData, setPreviewData ] = useContext(PreviewContext);
+
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -67,12 +72,12 @@ const Experience = () => {
 
       <div className='mt-20 flex flex-col'>
         <VerticalTimeline>
-          {experiences.map((experience, index) => (
+          {previewData.experiences ? previewData.experiences.map((experience, index) => (
             <ExperienceCard
               key={`experience-${index}`}
               experience={experience}
             />
-          ))}
+          )): ""}
         </VerticalTimeline>
       </div>
     </>
