@@ -5,9 +5,9 @@ import './index.css'
 import  {PreviewProvider}  from './context/PreviewContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <PreviewProvider>
       <App /> 
     </PreviewProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )

@@ -85,7 +85,9 @@ const registerWithEmailAndPassword = async (name, email, password) => {
               displayName: "",
               tagline: "",
               overview: "",
-              services: [ ]
+              services: [ ],
+              experiences: [ ],
+              projects: [ ]
           }
         });
   } catch (err) {

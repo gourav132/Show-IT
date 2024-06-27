@@ -45,7 +45,7 @@ export const PreviewProvider = ( props ) =>  {
         tagline: "",
         overview: "",
         services: [ ],
-        experiences: [ ]
+        experiences: []
     });
 
     async function handleUserData() {

@@ -59,8 +59,8 @@ const ExperienceCard = ({ experience }) => {
 const Experience = () => {
   const [previewData, setPreviewData ] = useContext(PreviewContext);
 
-  return (
-    <>
+  return ( 
+    <> 
       <motion.div variants={textVariant()}>
         <p className={`${styles.sectionSubText} text-center`}>
           What I have done so far
@@ -80,6 +80,7 @@ const Experience = () => {
           )): ""}
         </VerticalTimeline>
       </div>
+
     </>
   );
 };

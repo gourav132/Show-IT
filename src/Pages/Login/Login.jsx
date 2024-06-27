@@ -54,7 +54,7 @@ function Login() {
         
     <div>
     <div className="login">
-      <h1 className="absolute top-5 left-8 font-bold text-xl">Show-IT</h1>
+      <h1 className="absolute top-5 left-8 font-bold text-xl">Folio Spark</h1>
       <div className="login__container">
         <div className="mb-4">
           <h1 className="text-2xl font-bold">Take control of your future.</h1>

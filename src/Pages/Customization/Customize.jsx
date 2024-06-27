@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
+import { useRenderCount } from "@uidotdev/usehooks";
 import {auth, db} from '../../firebase/config';
 import { logout } from '../../firebase/config';
 
@@ -17,6 +18,7 @@ import { Preview } from '../index';
 import Experience from './Experience Field/Experience';
 
 import { PreviewContext } from '../../context/PreviewContext';
+import Project from './Project/Project';
 
 import {web} from '../../assets'
 
@@ -24,7 +26,8 @@ import {web} from '../../assets'
 export default function Customize() {
 
     const [ previewData, setPreviewData ] = useContext(PreviewContext);
-
+    const renderCount = useRenderCount();
+    console.log("Render Count --> ", renderCount);
     const [isExpanded, setIsExpand] = useState(false);
     const [previewStyle, setPreviewStyle ] = useState({
         previewWidth: "60%",
@@ -78,7 +81,7 @@ export default function Customize() {
                     type="text" 
                     id={Name} 
                     name={Name}
-                    className="mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
+                    className="border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
                     onChange = {handleChange}
                     value={previewData[Name]}
                 />
@@ -179,9 +182,10 @@ export default function Customize() {
 
                 <div>
                     <label className='text-sm font-medium text-gray-200' htmlFor="about">About you</label>
-                    <textarea 
+                    <textarea                    
                         id='about' 
-                        className='mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
+                        // className='mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
+                        className='border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
                         rows={5} 
                         type="text" 
                         placeholder='Write few lines about you'
@@ -206,21 +210,21 @@ export default function Customize() {
 
 
                 <Experience input={input} />
+                <hr className='mt-6' />
+                <Project />
 
-                
-
-            <div className='mt-4'>
-                <hr />
-                <button 
-                    onClick={handlePreview}
-                    className='mt-6 px-4 py-2 mr-4'  
-                    style={{ backgroundColor: "#915eff", borderRadius: "6px"}}
-                >
-                    preview
-                </button>
-                <button onClick={handleSubmitButton} className='hover:bg-slate-800 px-4 py-2 rounded-md'>Submit</button>
-                <button onClick={logout} className='ml-4 py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>Logout</button>
-            </div>
+                <div className='mt-4'>
+                    <hr />
+                    <button 
+                        onClick={handlePreview}
+                        className='mt-6 px-4 py-2 mr-4'  
+                        style={{ backgroundColor: "#915eff", borderRadius: "6px"}}
+                    >
+                        preview
+                    </button>
+                    <button onClick={handleSubmitButton} className='hover:bg-slate-800 px-4 py-2 rounded-md'>Save</button>
+                    <button onClick={logout} className='ml-4 py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>Logout</button>
+                </div>
 
             </div>
         </div>

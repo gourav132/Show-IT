@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import { PreviewContext } from '../../../context/PreviewContext';
+import { Add, Delete } from '../../../assets/svg';
 
 export default function Experience() {
 
@@ -35,7 +36,7 @@ export default function Experience() {
                     type={type}
                     id={Name} 
                     name={Name}
-                    className="mt-0.5 pr-2 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
+                    className="border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
                     onChange = {(e) => setExperience({...experience, [e.target.name]: e.target.value})}
                     value={experience[Name]}
                 />
@@ -113,13 +114,13 @@ export default function Experience() {
             <div className='flex mb-3 w-full overflow-x-scroll scroll '>
                 <div className='mr-4'>
                     <button onClick={()=>setExpState({...expState, mode: "add"})} className='flex py-2 px-4 rounded-md bg-blue-400 hover:bg-blue-500'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus mr-1"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>     
+                        <Add />
                     </button>
                 </div>
-                {
+                { previewData.experiences &&
                     previewData.experiences.map((exp, index) => {
                         return(
-                        <button onClick={()=>handleSearchExp(exp.id)} key={exp.id} className='mr-2 inline-flex items-center justify-around py-2 px-6 rounded-md text-sm bg-purple-500'>
+                        <button onClick={()=>handleSearchExp(exp.id)} key={exp.id} className='mr-2 inline-flex items-center justify-around py-2 px-6 rounded-md text-sm bg-purple-500 hover:bg-purple-600 transition-all'>
                             {exp.company_name}     
                         </button>
                         )
@@ -134,7 +135,7 @@ export default function Experience() {
                 <label className='text-sm font-medium text-gray-200' htmlFor="about">Experience</label>
                 <textarea 
                     // id='about' 
-                    className='mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
+                    className='border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
                     rows={5} 
                     type="text" 
                     placeholder='Write few points about your experience'
@@ -162,11 +163,7 @@ export default function Experience() {
                 {expState.mode==="add"?
                     <div className='mr-4'>
                         <button onClick={handleAddExperience} className='flex py-2 px-4 rounded-md bg-blue-400 hover:bg-blue-500'>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-plus mr-1">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>     
-                            Add Experience
+                            <Add /> <span className='ml-2'>Save</span>
                         </button>
                     </div>
                 : 
@@ -174,15 +171,14 @@ export default function Experience() {
                 <>
                 <div className='mr-4'>
                     <button onClick={()=>handleUpdate(expState.currentWorkingExp)} className='flex items-center py-2 px-4 rounded-md text-green-400 border border-green-400 hover:text-white hover:bg-green-500 transition-colors'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit mr-2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>                
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit mr-2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>                
                         Update Experience
                     </button>
                 </div>
 
                 <div>
                     <button onClick={()=>handleDeleteExperience(experience.id)} className='flex items-center py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>
-                    <svg  className="h-6 w-5 mr-1 feather feather-trash-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                    Delete Experience
+                        <Delete /> Delete Experience
                     </button>
                 </div>
                 </> }

@@ -196,7 +196,7 @@ import {
       name: "Lisa Wang",
       designation: "CTO",
       company: "456 Enterprises",
-      image: "https://randomuser.me/api/portraits/women/6.jpg",
+      image: "https://randomuser.me/api/portraits/women/6.jpg", // add a check that if there is a photo or not in preview data
     },
   ];
   
@@ -206,18 +206,18 @@ import {
       description:
         "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
       tags: [
-        {
-          name: "react",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "mongodb",
-          color: "green-text-gradient",
-        },
-        {
-          name: "tailwind",
-          color: "pink-text-gradient",
-        },
+        // {
+        //   name: "react",
+        //   color: "blue-text-gradient",
+        // },
+        // {
+        //   name: "mongodb",
+        //   color: "green-text-gradient",
+        // },
+        // {
+        //   name: "tailwind",
+        //   color: "pink-text-gradient",
+        // },
       ],
       image: carrent,
       source_code_link: "https://github.com/",

@@ -13,7 +13,7 @@ const Navbar = ({isExpanded, handleBackPreview}) => {
   const navigate = useNavigate();
   const[active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
-  const [name, setName ] = useState("Gourav")
+  const [name, setName ] = useState("Renegan")
 
 
   return (
