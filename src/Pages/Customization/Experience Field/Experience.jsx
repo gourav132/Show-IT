@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react'
 import { PreviewContext } from '../../../context/PreviewContext';
 import { Add, Delete } from '../../../assets/svg';
 
-export default function Experience() {
+export default function Experience({ step, setStep }) {
 
     const [ previewData, setPreviewData ] = useContext(PreviewContext);
 
@@ -36,7 +36,7 @@ export default function Experience() {
                     type={type}
                     id={Name} 
                     name={Name}
-                    className="border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
+                    className="border border-zinc-800 text-sm mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full" 
                     onChange = {(e) => setExperience({...experience, [e.target.name]: e.target.value})}
                     value={experience[Name]}
                 />
@@ -109,18 +109,18 @@ export default function Experience() {
 
   return (
     <div>
-        <section id='Work-Experience' className='mt-6'>
+        <section id='Work-Experience' className='overflow-y-scroll h-96 p-2 scroll'>
             <h3 className='text-xl font-semibold mb-4'>Work Experience</h3>
             <div className='flex mb-3 w-full overflow-x-scroll scroll '>
                 <div className='mr-4'>
-                    <button onClick={()=>setExpState({...expState, mode: "add"})} className='flex py-2 px-4 rounded-md bg-blue-400 hover:bg-blue-500'>
+                    <button onClick={()=>setExpState({...expState, mode: "add"})} className='flex py-2 px-4 text-sm rounded-md bg-blue-400 hover:bg-blue-500'>
                         <Add />
                     </button>
                 </div>
                 { previewData.experiences &&
                     previewData.experiences.map((exp, index) => {
                         return(
-                        <button onClick={()=>handleSearchExp(exp.id)} key={exp.id} className='mr-2 inline-flex items-center justify-around py-2 px-6 rounded-md text-sm bg-purple-500 hover:bg-purple-600 transition-all'>
+                        <button onClick={()=>handleSearchExp(exp.id)} key={exp.id} className='mr-2 inline-flex items-center justify-around py-2 px-2 overflow-x-hidden rounded-md text-sm bg-purple-500 hover:bg-purple-600 transition-all'>
                             {exp.company_name}     
                         </button>
                         )
@@ -135,7 +135,7 @@ export default function Experience() {
                 <label className='text-sm font-medium text-gray-200' htmlFor="about">Experience</label>
                 <textarea 
                     // id='about' 
-                    className='border border-zinc-800 mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
+                    className='border border-zinc-800 text-sm mt-0.5 rounded-md shadow-sm pl-2 py-3 focus:outline-none hover:ring-1 hover:ring-purple-300  focus:ring-2 focus:ring-purple-400 focus:ring-opacity-1 text-gray-300 w-full' 
                     rows={5} 
                     type="text" 
                     placeholder='Write few points about your experience'
@@ -162,29 +162,34 @@ export default function Experience() {
             <div className='w-full flex mt-2 mb-2'>
                 {expState.mode==="add"?
                     <div className='mr-4'>
-                        <button onClick={handleAddExperience} className='flex py-2 px-4 rounded-md bg-blue-400 hover:bg-blue-500'>
-                            <Add /> <span className='ml-2'>Save</span>
+                        <button onClick={handleAddExperience} className='flex py-2 px-4 rounded-md text-sm bg-blue-400 hover:bg-blue-500'>
+                            Save
                         </button>
                     </div>
                 : 
 
                 <>
                 <div className='mr-4'>
-                    <button onClick={()=>handleUpdate(expState.currentWorkingExp)} className='flex items-center py-2 px-4 rounded-md text-green-400 border border-green-400 hover:text-white hover:bg-green-500 transition-colors'>
+                    <button onClick={()=>handleUpdate(expState.currentWorkingExp)} className='flex text-sm items-center py-2 px-4 rounded-md text-green-400 border border-green-400 hover:text-white hover:bg-green-500 transition-colors'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-edit mr-2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>                
                         Update Experience
                     </button>
                 </div>
 
                 <div>
-                    <button onClick={()=>handleDeleteExperience(experience.id)} className='flex items-center py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>
+                    <button onClick={()=>handleDeleteExperience(experience.id)} className='flex text-sm items-center py-2 px-4 rounded-md text-red-400 border border-red-400 hover:text-white hover:bg-red-500 transition-colors'>
                         <Delete /> Delete Experience
                     </button>
                 </div>
                 </> }
-
-
             </div>
+            <button
+                    className='px-4 py-1 text-sm bg-gray-500 rounded mt-3 mr-3'
+                    onClick={()=>setStep("overview")}>Back</button>
+                <button
+                    className='px-4 py-1 text-sm bg-purple-500 rounded'
+                    onClick={()=>setStep("project")}
+                >Next</button>
             
 </section>
     </div>
