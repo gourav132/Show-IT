@@ -2,19 +2,24 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { GoogleAuthProvider,
-getAuth,
-signInWithPopup,
-signInWithEmailAndPassword,
- createUserWithEmailAndPassword,
- sendPasswordResetEmail,
- signOut,
- } from "firebase/auth";
- import {getFirestore,
-query,  getDocs,
- collection,  where,
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
   addDoc,
-  } from "firebase/firestore";
+} from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -23,7 +28,7 @@ const firebaseConfig = {
   projectId: "show-it-2a948",
   storageBucket: "show-it-2a948.appspot.com",
   messagingSenderId: "716030324839",
-  appId: "1:716030324839:web:2c8d1e2d234c34760624c2"
+  appId: "1:716030324839:web:2c8d1e2d234c34760624c2",
 
   // apiKey: process.env.REACT_APP_API_KEY,
   // authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -37,6 +42,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
   try {
@@ -69,27 +75,29 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-        const firstName = name.split(' ')[0];
-        const randomNum = Math.floor(1000 + Math.random() * 9000);
-        const userName = `${firstName}${randomNum}`;
-        const baseUrl = `${window.location.protocol}//${window.location.hostname}${window.location.port ? `:${window.location.port}` : ''}`;
-        const CustomURL = baseUrl+"/"+"Portfolio"+"/"+userName;    
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,
-          name,
-          authProvider: "local",
-          email,
-          userName: userName,
-          previewData: {
-            publicURL: CustomURL,
-              displayName: "",
-              tagline: "",
-              overview: "",
-              services: [ ],
-              experiences: [ ],
-              projects: [ ]
-          }
-        });
+    const firstName = name.split(" ")[0];
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const userName = `${firstName}${randomNum}`;
+    const baseUrl = `${window.location.protocol}//${window.location.hostname}${
+      window.location.port ? `:${window.location.port}` : ""
+    }`;
+    const CustomURL = baseUrl + "/" + "Portfolio" + "/" + userName;
+    await addDoc(collection(db, "users"), {
+      uid: user.uid,
+      name,
+      authProvider: "local",
+      email,
+      userName: userName,
+      previewData: {
+        publicURL: CustomURL,
+        displayName: "",
+        tagline: "",
+        overview: "",
+        services: [],
+        experiences: [],
+        projects: [],
+      },
+    });
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -110,6 +118,7 @@ const logout = () => {
 export {
   auth,
   db,
+  storage,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,

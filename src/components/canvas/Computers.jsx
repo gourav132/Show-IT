@@ -5,9 +5,9 @@ import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
   const { scene, nodes, materials } = useGLTF(`/desktop_pc/scene.gltf`);
-  
+
   // Log the loaded model to debug
-  console.log("GLTF Model:", scene, nodes, materials);
+  // console.log("GLTF Model:", scene, nodes, materials);
 
   useEffect(() => {
     if (scene) {
@@ -20,7 +20,9 @@ const Computers = ({ isMobile }) => {
             const y = positionAttr.getY(i);
             const z = positionAttr.getZ(i);
             if (isNaN(x) || isNaN(y) || isNaN(z)) {
-              console.error(`NaN value found in position attribute at index ${i}: (${x}, ${y}, ${z})`);
+              console.error(
+                `NaN value found in position attribute at index ${i}: (${x}, ${y}, ${z})`
+              );
             }
           }
         }
