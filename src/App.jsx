@@ -1,33 +1,91 @@
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from './components';
-import { Portfolio, Login, Register, Reset, Customize, Preview } from './Pages';
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StaticBackground, ProtectedRoute, ErrorBoundary } from './components';
+import { Portfolio, Login, Register, Reset, Customize, Preview, Landing, ControlCenter, Settings } from './Pages';
 
-const App = () => {
+function App() {
   return (
-    // Base name will be the username of the user
-    <BrowserRouter> 
-      <Routes>
-        {/* <Route exact path="/" element={<Login />} /> */}
-        {/* <Route exact path="/register" element={<Register />} /> */}
-        <Route path="/Portfolio/:userId" element={<Portfolio />} />
-        <Route path="/reset" element={<Reset />} />
-        <Route path="/Create" element = {<Customize />} />
-        <Route path="/Preview" element = {<div style={{zoom: "80%"}}><Preview /></div>} />
-        <Route path="/" element = {
-          <div>
-            <Login />
-            <StarsCanvas />
-          </div>
-            } />
-        <Route path="/register" element = {
-          <div>
-            <Register />
-            <StarsCanvas />
-          </div>
-            } />
-      </Routes>
-    </BrowserRouter>
-  )
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          {/* Landing Page - Entry Point (Public) */}
+          <Route path="/" element={<Landing />} />
+          
+          {/* Authentication Routes (Public - redirect if logged in) */}
+          <Route path="/login" element={
+            <ProtectedRoute requireAuth={false}>
+              <div>
+                <Login />
+                <StaticBackground />
+              </div>
+            </ProtectedRoute>
+          } />
+          <Route path="/register" element={
+            <ProtectedRoute requireAuth={false}>
+              <div>
+                <Register />
+                <StaticBackground />
+              </div>
+            </ProtectedRoute>
+          } />
+          <Route path="/reset" element={
+            <ProtectedRoute requireAuth={false}>
+              <div>
+                <Reset />
+                <StaticBackground />
+              </div>
+            </ProtectedRoute>
+          } />
+
+          {/* Main Portfolio Route (Public) */}
+          <Route path="/portfolio" element={
+            <div className="relative z-0 bg-primary">
+              <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+                <Navbar />
+                <Hero />
+              </div>
+              <div className="relative z-0">
+                <About />
+                <Experience />
+                <Tech />
+                <Works />
+                <Feedbacks />
+                <div className="relative z-0">
+                  <Contact />
+                  <StaticBackground />
+                </div>
+              </div>
+            </div>
+          } />
+
+          {/* Protected Routes (Require Authentication) */}
+          <Route path="/control-center" element={
+            <ProtectedRoute requireAuth={true}>
+              <ControlCenter />
+            </ProtectedRoute>
+          } />
+          <Route path="/customize" element={
+            <ProtectedRoute requireAuth={true}>
+              <Customize />
+            </ProtectedRoute>
+          } />
+          <Route path="/preview" element={
+            <ProtectedRoute requireAuth={true}>
+              <Preview />
+            </ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute requireAuth={true}>
+              <Settings />
+            </ProtectedRoute>
+          } />
+
+          {/* Dynamic Portfolio Route (Public) */}
+          <Route path="/portfolio/:userId" element={<Portfolio />} />
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
+  );
 }
 
-export default App
+export default App;

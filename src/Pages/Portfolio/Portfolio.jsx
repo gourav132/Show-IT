@@ -8,7 +8,7 @@ import {
   Navbar,
   Tech,
   Works,
-  StarsCanvas,
+  StaticBackground,
 } from "../../components";
 import { logout, auth, db } from "../../firebase/config";
 
@@ -52,16 +52,16 @@ export default function Portfolio() {
   }, [userId]);
 
   return (
-    <div>
+    <div className="w-8/12 m-auto">
       {loading ? (
         <>
           <div className="login">
-            <ReactLoading type="bubbles" height={"80px"} width={"80px"} />
+            <ReactLoading type="bubbles" height={"60px"} width={"60px"} />
           </div>
         </>
       ) : (
         <>
-          <div style={{ zoom: "80%" }} className="relative z-0 bg-primary">
+          <div style={{ zoom: "64%" }} className="relative z-0 bg-primary">
             <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
               <Navbar />
               <Hero />
@@ -73,7 +73,7 @@ export default function Portfolio() {
             {/* <Feedbacks /> */}
             <div className="relative z-0">
               <Contact />
-              <StarsCanvas />
+              <StaticBackground />
             </div>
           </div>
         </>

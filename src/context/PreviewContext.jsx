@@ -32,7 +32,7 @@ import {
     carrent,
     jobit,
     tripguide,
-    threejs,
+
   } from "../assets";
 
 
@@ -45,7 +45,8 @@ export const PreviewProvider = ( props ) =>  {
         tagline: "",
         overview: "",
         services: [ ],
-        experiences: []
+        experiences: [],
+        skills: []
     });
 
     async function handleUserData() {
